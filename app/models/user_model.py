@@ -15,14 +15,14 @@ import datetime
 
 class User(Base):
     id = Column(Integer, primary_key=True)
-    email = Column(String(24), unique=True, nullable=False)
+    mobile = Column(String(11), unique=True, nullable=False)
     nickname = Column(String(24), unique=True)
     openid = Column(String(64), unique=False, nullable=True, default='')
     auth = Column(SmallInteger, default=1)
     _password = Column('password', String(100))
 
     def keys(self):
-        return ['id', 'email', 'nickname', 'auth', 'create_time', 'openid']
+        return ['id', 'mobile', 'nickname', 'auth', 'create_time', 'openid']
 
     @property
     def password(self):
@@ -33,18 +33,18 @@ class User(Base):
         self._password = generate_password_hash(raw)
 
     @staticmethod
-    def register_by_email(nickname, account, secret):
+    def register_by_mobile(nickname, account, secret):
         with db.auto_commit():
             user = User()
             user.nickname = nickname
-            user.email = account
+            user.mobile = account
             user.password = secret
             db.session.add(user)
 
     # 验证用户账号密码登录
     @staticmethod
-    def verify(email, password):
-        user = User.query.filter_by(email=email).first()
+    def verify(mobile, password):
+        user = User.query.filter_by(mobile=mobile).first()
         if not user:
             raise NotFound(msg='用户不存在')
         if not user.check_password(password):

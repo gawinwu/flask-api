@@ -15,7 +15,7 @@ with app.app_context():
         user = User()
         user.nickname = 'SuperAdmin'
         user.password = '123456'
-        user.email = '3195968@qq.com'
+        user.mobile = '13827227135'
         user.auth = 99
         user.openid = None
         db.session.add(user)

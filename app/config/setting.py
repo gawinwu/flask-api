@@ -4,8 +4,8 @@
 
 __author__ = '吴闻'
 
-TOKEN_EXPIRATION = 30 * 24 * 3600
-# TOKEN_EXPIRATION = 60
+# TOKEN_EXPIRATION = 30 * 24 * 3600
+TOKEN_EXPIRATION = 60*5  # 60 = 1分钟
 
 AUTH_SCOPE = {
     'SuperAdmin': 99,

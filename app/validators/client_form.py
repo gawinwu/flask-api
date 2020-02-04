@@ -26,10 +26,9 @@ class ClientForm(Form):
         self.type.data = client
 
 
-class UserEmailForm(ClientForm):
+class UserMobileForm(ClientForm):
     account = StringField(validators=[
-        Email(message='email 格式错误')
-    ])
+        Regexp(r'^1[35678]\d{9}',  message='手机号码格式不正确')])
     secret = StringField(validators=[
         DataRequired(),
         Regexp(r'^[A-Za-z0-9_*&$#@]{6,22}$')
@@ -37,7 +36,7 @@ class UserEmailForm(ClientForm):
     nickname = StringField(validators=[DataRequired(), length(min=2, max=22)])
 
     def validate_account(self, value):
-        if User.query.filter_by(email=value.data).first():
+        if User.query.filter_by(mobile=value.data).first():
             raise ValidationError(message="账号已存在")
 
     def validate_nickname(self, value):

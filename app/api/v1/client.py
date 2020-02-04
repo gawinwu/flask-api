@@ -10,7 +10,7 @@ from app.libs.enums import ClientTypeEnum
 from app.libs.api_json_info import Success
 from app.libs.redprint import Redprint
 from app.models.user_model import User
-from app.validators.client_form import ClientForm, UserEmailForm
+from app.validators.client_form import ClientForm, UserMobileForm
 
 api = Redprint('client')
 
@@ -19,7 +19,7 @@ api = Redprint('client')
 def create_client():
     form = ClientForm().validate_for_api()
     promise = {
-        ClientTypeEnum.USER_EMAIL: __register_user_by_email,
+        ClientTypeEnum.USER_MOBILE: __register_user_by_mobile,
         ClientTypeEnum.USER_MINA: __register_user_by_mina,
         ClientTypeEnum.USER_DOUYIN: __register_user_by_douyin,
     }
@@ -27,9 +27,9 @@ def create_client():
     return Success()
 
 
-def __register_user_by_email():
-    form = UserEmailForm().validate_for_api()
-    User.register_by_email(form.nickname.data,
+def __register_user_by_mobile():
+    form = UserMobileForm().validate_for_api()
+    User.register_by_mobile(form.nickname.data,
                            form.account.data,
                            form.secret.data)
 

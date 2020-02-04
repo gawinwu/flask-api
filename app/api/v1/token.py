@@ -19,7 +19,7 @@ api = Redprint('token')
 def get_token():
     form = ClientForm().validate_for_api()
     promise = {
-        ClientTypeEnum.USER_EMAIL: User.verify,
+        ClientTypeEnum.USER_MOBILE: User.verify,
         ClientTypeEnum.USER_MINA: __verify_user_by_mina,
         # ClientTypeEnum.USER_DOUYIN: __verify_user_by_douyin,
     }

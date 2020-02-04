@@ -8,8 +8,7 @@ from enum import Enum
 
 
 class ClientTypeEnum(Enum):
-    USER_EMAIL = 100
-    USER_MOBILE = 101
+    USER_MOBILE = 100
 
     # 微信小程序
     USER_MINA = 200

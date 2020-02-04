@@ -11,4 +11,4 @@ api = Redprint('book')
 
 @api.route('/get')
 def get_book():
-    return 'A book'
+    return 'A book!'
